@@ -1,0 +1,3 @@
+# exclude Node.js modules
+.DS_Store
+node_modules
