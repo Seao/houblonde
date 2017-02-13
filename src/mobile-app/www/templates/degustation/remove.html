@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm">
+    
+    <!-- style attribute for Android -->
+    <h1 class="title" style="text-align:center!important;">Supprimer</h1>
+    
+    <!-- Button left -->
+    <button class="button button-icon button-clear button-light ion-ios-arrow-thin-left" ng-click="closePhoto()"></button>
+    
+    <!-- Button right [empty] -->
+    <button class="button button-icon button-clear button-light"></button>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="item item-text-wrap item-degustation font-middle no-padding">
+      <div class="degustation-header">
+        <div class="title assertive">
+          Attention
+        </div>
+        <div class="subtitle">
+          Toute suppresion est définitive
+        </div>
+      </div>
+    </div>
+
+    <div class="supGallery">
+      <span ng-repeat="photo in photos">
+        <img ng-src="{{ photo.downloadURL }}">
+      </span>
+    </div>
+  </ion-content>
+</ion-modal-view>

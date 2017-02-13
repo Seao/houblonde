@@ -1,0 +1,59 @@
+<ion-view view-title="Selection">
+
+  <!-- Content -->
+  <ion-content class="stable-bg">
+    
+    <!-- Header -->
+    <div class="header-selection" style="background-image:url(http://164.132.51.69/houblonde/selection/{{selection.background}});">
+    </div>
+
+    <!-- Author -->
+    <div class="list author-univers">
+      <span class="item item-thumbnail-left">
+        <img src="img/avatar.png">
+        <h2>{{author.username}}</h2>
+        <p>Rédacteur Houblonde</p>
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="item item-text-wrap item-description">
+      <div ng-bind-html="selection.description"></div>
+    </div>
+
+     <!-- Divider Bar -->
+    <div class="item item-divider no-padding-top profil-divider" ng-show="bieres.length > 0">
+      Sélection
+    </div>
+
+    <!-- List --> 
+    <div class="list" ng-show="bieres.length > 0">
+      <ion-list>
+        <!-- Item and repeat -->
+        <ion-item class="item item-thumbnail-left no-padding-bottom" ng-href="#/tab/detail/{{biere.b_id}}" ng-repeat="biere in bieres">
+          <!-- Image -->
+          <img ng-src="http://164.132.51.69/houblonde/images/{{biere.b_image}}" class="img-bottle">
+          <!-- Nom -->
+          <h2 class="item-title">{{biere.b_nom}}</h2>
+          <!-- Flag -->
+          <div class="row row-limited">
+            <div class="col-10">
+              <div class="row row-limited">
+                <div class="col">
+                  <div class="icon-round">
+                    <img ng-src="http://164.132.51.69/houblonde/pays/{{pays[biere.b_pays].p_flag | lowercase}}.svg">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Informations -->
+            <p class="item-label">
+              <i class="icon ion-beer"></i> {{types[biere.b_type].t_nom}}&nbsp;&nbsp;
+              <i class="icon ion-waterdrop"></i> {{biere.b_degree}}&nbsp;&nbsp;
+            </p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

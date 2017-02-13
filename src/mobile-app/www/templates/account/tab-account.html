@@ -1,0 +1,39 @@
+<ion-view view-title="Profil">
+
+	<!-- Buttons Top Bar Right -->
+	<ion-nav-buttons side="secondary">
+		<button class="button button-icon button-clear button-light ion-android-cancel" ng-click="logout()"></button>
+	</ion-nav-buttons>
+
+	<!-- Content -->
+	<ion-content class="stable-bg">
+	    <div class="list card profile-top text-center">
+	      	<div class="item item-text-wrap">
+	        	<button class="button button-icon ion-edit calm"></button>
+	        	<img src="img/avatar.png" class="avatar-profile" alt="">
+	        	<h2 class="font-thin">John Doe</h2>
+	        	<p>Etudiant à l'INSA de Lyon</p>
+        		<p class="text-muted">France</p>
+	      	</div>
+
+	      	<!-- Divider Bar -->
+			<div class="item item-divider no-padding-top profil-divider">
+			    General
+			</div>
+
+			<div class="list">
+		      	<label class="item item-input">
+		        	<i class="icon ion-ios-email-outline placeholder-icon"></i>
+		        	<input type="text" disabled="disabled" placeholder="{{firebaseUser.email}}">
+		      	</label>
+		    </div>
+
+		    <!-- Divider Bar -->
+			<div class="item item-divider no-padding-top profil-divider">
+			    Paramètres
+			</div>
+
+			<ion-toggle class="setting" ng-model="airplaneMode" toggle-class="toggle-calm">Notifications</ion-toggle>
+	    </div>
+	  </ion-content>
+</ion-view>

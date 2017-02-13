@@ -1,0 +1,27 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm">
+  
+    <!-- style attribute for Android -->
+    <h1 class="title" style="text-align:center!important;">Mot de passe oublié</h1>
+    
+    <!-- Button left -->
+    <button class="button button-icon button-clear button-light ion-ios-arrow-thin-left" ng-click="closeForget()"></button>
+
+    <!-- Button right [empty] -->
+    <button class="button button-icon button-clear button-light"></button>
+
+  </ion-header-bar>
+
+  <ion-content scroll="false">
+    <div class="list">
+      <label class="item item-input">
+        <i class="icon ion-ios-email-outline placeholder-icon-large"></i>
+        <input type="text" placeholder="Mail">
+      </label>
+    </div>
+
+    <p class="calm text-center">
+      Vous avez oublié votre mot de passe ?<br/>Pas de panique, entrez votre adresse mail !
+    </p>
+  </ion-content>
+</ion-modal-view>

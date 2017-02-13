@@ -1,0 +1,109 @@
+<ion-view view-title="Dégustation">
+
+  <!-- Buttons Top Bar Right -->
+  <ion-nav-buttons>
+    <button ng-hide="page != 1" class="button button-icon button-clear button-light ion-ios-trash" ng-click="openPhoto()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button ng-hide="page != 1" class="button button-icon button-clear button-light ion-camera" ng-click="openPhoto()"></button>
+  </ion-nav-buttons>
+
+  <!-- Header bar -->
+  <div class="bar bar-subheader box-shadow">
+    <div class="button-bar">
+      <a class="button button-light icon-left ion-camera has-border-right" ng-click="setPage(1)">Vos photos</a>
+      <a class="button button-light icon-left ion-android-favorite-outline" ng-click="setPage(2)">Coup de coeur</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <ion-content class="has-subheader">
+    
+    <!-- PHOTOS -->
+
+    <div ng-show="page == 1">
+      <!-- Introduction -->
+      <div class="item item-text-wrap item-degustation font-middle no-padding">
+        <div class="degustation-header">
+          <div class="title">
+            Vos dernières photos
+          </div>
+          <div class="subtitle">
+            Prenez des photos de vos dégustations<br>
+            et retrouvez les instantanément !
+          </div>
+        </div>
+      </div>
+
+       <!-- Gallery -->
+      <div class="item item-text-wrap no-padding">
+        <ion-gallery ion-gallery-items="gallery"></ion-gallery>
+      </div>
+    </div>
+
+    <!-- LIKES -->
+
+    <div ng-show="page == 2">
+      <!-- Introduction -->
+      <div class="item item-text-wrap item-degustation font-middle no-padding">
+        <div class="degustation-header">
+          <div class="title">
+            Retrouvez vos bières favorites !
+          </div>
+          <div class="subtitle">
+            Gardez une trace de vos dernières dégustations ...<br>
+            Et nous vous proposerons des sélections à votre gôut !
+          </div>
+        </div>
+      </div>
+
+      <!-- Spinner -->
+      <div class="item item-text-wrap item-degustation font-middle no-padding stable-bg" ng-hide="bieres.length > 0">
+        <p class="calm text-center" ng-show="bieres.length == 0">
+          Aucune donnée<br>
+          <ion-spinner icon="ripple"></ion-spinner>
+          <br>{{loading}}
+        </p>
+      </div>
+
+      <!-- Divider Bar -->
+      <div class="item item-divider no-padding-top profil-divider" ng-show="bieres.length > 0">
+        Vos favoris
+      </div>
+
+      <!-- List --> 
+      <div class="list" ng-show="bieres.length > 0">
+        <ion-list>
+          <!-- Item and repeat -->
+          <ion-item class="item item-thumbnail-left no-padding-bottom" ng-href="#/tab/detail/{{biere.b_id}}" ng-repeat="biere in bieres">
+            <!-- Image -->
+            <img ng-src="http://164.132.51.69/houblonde/images/{{biere.b_image}}" class="img-bottle">
+            <!-- Nom -->
+            <h2 class="item-title">{{biere.b_nom}}</h2>
+            <!-- Flag -->
+            <div class="row row-limited">
+              <div class="col-10">
+                <div class="row row-limited">
+                  <div class="col">
+                    <div class="icon-round">
+                      <img ng-src="http://164.132.51.69/houblonde/pays/{{pays[biere.b_pays].p_flag | lowercase}}.svg">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Informations -->
+              <p class="item-label">
+                <i class="icon ion-beer"></i> {{types[biere.b_type].t_nom}}&nbsp;&nbsp;
+                <i class="icon ion-waterdrop"></i> {{biere.b_degree}}&nbsp;&nbsp;
+              </p>
+            </div>
+
+            <ion-option-button class="button-assertive" ng-click="removeLike({{biere.b_id}})">
+              &nbsp;<i class="icon ion-trash-a"></i>
+            </ion-option-button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

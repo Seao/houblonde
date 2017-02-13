@@ -1,0 +1,155 @@
+<ion-view view-title="Afficher" hide-back-button="true">
+
+  <!-- Buttons Top Bar Right -->
+  <ion-nav-buttons side="primary">
+    <a class="button back-button button-icon button-clear ion-ios-arrow-left" href="#/tab/search"> Back</a>
+  </ion-nav-buttons>
+
+  <!-- Content -->
+  <ion-content class="has-bg">
+    <div class="list card biere-top text-center">
+      <div class="item item-text-wrap top-image">
+        <button class="button button-icon ion-edit calm" ng-click="setPage(3)"></button>
+
+        <img src="http://164.132.51.69/houblonde/images/{{biere.b_image}}" class="biere-profile" alt="">
+
+        <h2 class="font-thin">{{biere.b_nom}}</h2>
+        <p>{{biere.b_brasserie}}</p>
+      </div>
+
+      <div class="bar bar-star box-shadow">
+        <div class="button-bar">
+          <a class="button button-light icon-left ion-clipboard has-border-right" ng-click="setPage(1)">Details</a>
+          <a class="button button-light icon-left ion-star" ng-click="setPage(2)">Avis</a>
+          <a class="button button-light icon-left ion-android-favorite-outline" ng-click="writeNewLike()">J'aime</a>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div ng-show="page == 1">
+
+        <!-- Divider Bar -->
+        <div class="item item-divider no-padding-top profil-divider">
+          Informations
+        </div>
+
+        <!-- Informations -->
+        <div class="item item-text-wrap">
+          <div class="country">
+            {{pays.p_nom}}
+          </div>
+          <div class="extra">
+            {{type.t_nom}}
+          </div>
+          <div class="squareboxes clearfix">
+            <p>{{couleur.c_nom}}</p>
+            <p>{{biere.b_degree}}°</p>
+            <p>{{volume.v_qte}}</p>
+          </div>
+        </div>
+
+        <!-- Divider Bar -->
+        <div class="item item-divider no-padding-top profil-divider">
+          Dégustation
+        </div>
+
+        <!-- Degustation -->
+        <div class="item item-text-wrap">
+          <!-- Aromes -->
+          <div class="row no-padding">
+            <div class="col">
+              <strong>Arômes :</strong>
+            </div>
+            <div class="col col-75">
+              {{degustation.b_arome}}
+            </div>
+          </div>
+
+          <!-- Note -->
+          <div class="row no-padding">
+            <div class="col">
+              <strong>Note :</strong>
+            </div>
+            <div class="col col-75">
+              {{degustation.b_note}}
+            </div>
+          </div>
+
+          <!-- Robe -->
+          <div class="row no-padding">
+            <div class="col">
+              <strong>Robe :</strong>
+            </div>
+            <div class="col col-75">
+              {{degustation.b_robe}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider Bar -->
+        <div class="item item-divider no-padding-top profil-divider">
+          Description
+        </div>
+
+        <!-- Description -->
+        <div class="item item-text-wrap item-description">
+          <div ng-bind-html="degustation.b_description"></div>
+        </div>
+      </div>
+
+      <!-- Avis -->
+      <div ng-show="page == 2">
+
+        <!-- Divider Bar -->
+        <div class="item item-divider no-padding-top profil-divider">
+          Avis récents
+        </div>
+
+        <!-- If we have avis -->
+        <div ng-show="avis.length">
+          <!-- Avis -->
+          <ion-list class="item-text-wrap">
+            <ion-item class="item no-padding-bottom item-comment" ng-repeat="av in avis">
+              <h3 class="item-title">{{av.username}}</h3> 
+              <p class="item-label label-comment">
+                {{av.avis}}
+              </p>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <!-- If we don't have avis -->
+        <div ng-show="!avis.length" class="item item-text-wrap">
+          <p class="item-label label-comment">
+            Cette bière n'a actuellement aucun avis. Soyez le premier à donner vos impressions de dégustation !
+          </p>
+        </div>
+      </div>
+
+      <!-- Write a avis -->
+      <div ng-show="page == 3">
+
+        <!-- Divider Bar -->
+        <div class="item item-divider no-padding-top profil-divider">
+          Partagez votre expérience !
+        </div>
+
+        <div class="item item-text-wrap item-description">
+
+          <!-- TextArea -->
+          <label class="item item-input text">
+            <textarea placeholder="Votre commentaire" ng-model="form.avis" name='description'></textarea>
+          </label>
+
+          <!-- Button -->
+          <div class="validation-center">
+            <button class="button button-calm" ng-click="writeNewAvis(form, biere.b_id)">
+              Valider
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

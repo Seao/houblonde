@@ -1,0 +1,41 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm">
+    
+    <!-- style attribute for Android -->
+    <h1 class="title" style="text-align:center!important;">Photo</h1>
+    
+    <!-- Button left -->
+    <button class="button button-icon button-clear button-light ion-ios-arrow-thin-left" ng-click="closePhoto()"></button>
+    
+    <!-- Button right [empty] -->
+    <button class="button button-icon button-clear button-light"></button>
+  </ion-header-bar>
+
+  <ion-content scroll="false">
+    <div class="item item-text-wrap item-button bg-transparent">
+        <div class="row">
+          <div class="col">
+            <button class="button button-calm" ng-click="takePicture()">Prendre une photo</button>
+          </div>
+          <div class="col">
+            <button ng-disabled="true" class="button button-balanced" ng-click="sendImageBase()">Valider</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Illustration
+      <div class="item item-text-wrap item-photo no-padding bg-transparent" ng-show="imgURI == undefined">
+        <img ng-src="http://placehold.it/400x400" style="width:80%;">
+      </div>
+      -->
+
+      <!-- Image taked -->
+      <div class="item item-text-wrap item-photo no-padding bg-transparent" ng-show="imgURI != undefined">
+        <img ng-src="{{imgURI}}" style="width:80%;">
+      </div>
+
+      <button class="button button-calm" ng-click="uploadFile()">
+        Test Save
+      </button>
+  </ion-content>
+</ion-modal-view>

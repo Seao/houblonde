@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm">
+    
+    <!-- style attribute for Android -->
+    <h1 class="title" style="text-align:center!important;">Créer un compte</h1>
+    
+    <!-- Button left -->
+    <button class="button button-icon button-clear button-light ion-ios-arrow-thin-left" ng-click="closeRegister()"></button>
+    
+    <!-- Button right [empty] -->
+    <button class="button button-icon button-clear button-light"></button>
+  </ion-header-bar>
+
+  <ion-content scroll="false">
+    <div class="list">
+      <!-- Username -->
+      <label class="item item-input">
+        <i class="icon ion-ios-person-outline placeholder-icon-large"></i>
+        <input type="text" placeholder="Nom d'utilisateur" ng-model="form.username">
+      </label>
+
+      <!-- Name -->
+      <label class="item item-input">
+        <i class="icon ion-ios-email-outline placeholder-icon-large"></i>
+        <input type="text" placeholder="Mail" ng-model="form.email">
+      </label>
+
+      <!-- Password -->
+      <label class="item item-input">
+        <i class="icon ion-ios-locked-outline placeholder-icon-large"></i>
+        <input type="password" placeholder="Mot de passe" ng-model="form.password">
+      </label>
+    </div>
+
+    <!-- Condition -->
+    <p class="calm text-center">
+      En vous inscrivant vous acceptez<br/>les Conditions d'utilisation
+    </p>
+
+    <!-- Errors -->
+    <p class="assertive text-center" ng-if="error"><strong>{{ error }}</strong></p>
+
+    <!-- Submit-->
+    <div class="validation-center">
+      <button class="button button-calm" ng-click="createUser(form)">
+        Valider
+      </button>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,35 @@
+<ion-view view-title="Univers">
+
+  <!-- Content -->
+  <ion-content class="stable-bg">
+    
+    <!-- Header -->
+    <div class="header-univers" style="background-image:url(http://164.132.51.69/houblonde/univers/{{univers.background}});">
+      <p class="univers-title">{{univers.nom}}</p>
+    </div>
+
+    <!-- Author -->
+    <div class="list author-univers">
+      <span class="item item-thumbnail-left">
+        <img src="img/avatar.png">
+        <h2>{{author.username}}</h2>
+        <p>Rédacteur Houblonde</p>
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="item item-text-wrap item-description">
+      <div ng-bind-html="univers.description"></div>
+    </div>
+
+    <!-- Divider Bar -->
+    <div class="item item-divider no-padding-top profil-divider" ng-show="items.length > 0">
+      Photos
+    </div>
+
+    <!-- Gallery -->
+    <div class="item item-text-wrap no-padding">
+      <ion-gallery ion-gallery-items="items"></ion-gallery>
+    </div>
+  </ion-content>
+</ion-view>

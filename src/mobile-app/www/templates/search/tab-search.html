@@ -1,0 +1,124 @@
+<ion-view hide-nav-bar="true">
+  
+  <!-- Search Bar --> 
+  <ion-header-bar class="bar-dark item-input-inset">
+    <label class="item-input-wrapper" ng-class="(bieres.length) ? '' : 'disabled'">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Recherche" ng-model="query" ng-init="query=''" focus-me ng-disabled="!bieres.length">
+    </label>
+    <button class="button button-clear" ng-show="query.length > 0" ng-click="query = ''">
+      Cancel
+    </button>
+  </ion-header-bar>
+
+  <!-- Header bar -->
+  <div class="bar bar-subheader box-shadow">
+    <div class="button-bar">
+      <a class="button button-light icon-left ion-search has-border-right" ng-click="setPage(1)">
+        Classique
+      </a>
+      <a class="button button-light icon-left ion-ios-camera" ng-click="setPage(2)">
+        Photo
+      </a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <ion-content class="has-subheader stable-bg">
+    <!-- Sponsor -->
+    <div class="list" ng-hide="query.length">
+      <div class="sponso">
+        <h1>La recherche de bières est <br>sponsorisé par</h1>
+        <img src="img/sponso.png">
+        
+        <!-- Search spinner -->
+        <p class="calm text-center spaced" ng-hide="bieres.length || page != 1">
+          Récupération des données en cours<br>
+          <ion-spinner icon="ripple"></ion-spinner>
+        </p>
+        <!-- Beta advertissment -->
+        <p class="assertive text-center" ng-show="page == 2">
+          Fonctionnalité en bêta
+        </p>
+      </div>
+    </div>
+
+    <!-- Classique -->
+    <div ng-show="page == 1">
+      <!-- List --> 
+      <div class="list" ng-show="query.length">
+        <ion-list>
+          <!-- Item and repeat -->
+          <ion-item class="item item-thumbnail-left no-padding-bottom" ng-href="#/tab/detail/{{biere.b_id}}" ng-repeat="biere in bieres | filter: { b_nom: query } | limitTo:listlength">
+            <!-- Image -->
+            <img ng-src="http://164.132.51.69/houblonde/images/{{biere.b_image}}" class="img-bottle">
+            <!-- Nom -->
+            <h2 class="item-title">{{biere.b_nom}}</h2>
+            <!-- Flag -->
+            <div class="row row-limited">
+              <div class="col-10">
+                <div class="row row-limited">
+                  <div class="col">
+                    <div class="icon-round">
+                      <img ng-src="http://164.132.51.69/houblonde/pays/{{pays[biere.b_pays].p_flag | lowercase}}.svg">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Informations -->
+              <p class="item-label">
+                <i class="icon ion-beer"></i> {{types[biere.b_type].t_nom}}&nbsp;&nbsp;
+                <i class="icon ion-waterdrop"></i> {{biere.b_degree}}&nbsp;&nbsp;
+              </p>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <!-- Scroll -->
+        <ion-infinite-scroll ng-if="listlength<=bieres.length" on-infinite="loadMore()" distance="3%">
+        </ion-infinite-scroll>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div ng-show="page == 2">
+      <!-- Buttons -->
+      <div class="item item-text-wrap item-button bg-transparent">
+        <div class="row">
+          <div class="col">
+            <button class="button button-calm" ng-click="takePicture()">Prendre une photo</button>
+          </div>
+          <div class="col">
+            <button ng-disabled="imgURI === undefined" class="button button-balanced" ng-click="sendImageBase()">Valider {{imgURI}}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image taked -->
+      <div class="item item-text-wrap item-photo no-padding bg-transparent" ng-show="imgURI != undefined">
+        <img ng-src="{{imgURI}}" style="width:80%;">
+      </div>
+
+      <div ng-show="loading == true">
+        <p class="calm text-center">
+          Requête en cours<br>
+          <ion-spinner icon="ripple"></ion-spinner>
+        </p>
+      </div>
+
+      <div class="list" ng-show="infoComparison.length && loading != true">
+        <div class="sponso">
+          <h1>Bières similaires ({{ infoComparison.length }}) :</h1>
+          <div class="list">
+            <!-- Sroll horizontal -->
+            <ion-scroll direction="x">
+              <div class="horizontal-scroll">
+                <a ng-repeat="element in infoComparison" ng-href="#/tab/detail/{{element.content.b_id}}" class="item item-cover-large-beer" style="background-image:url(http://164.132.51.69/houblonde/images/{{ element.content.b_image }})"></a>
+              </div>
+            </ion-scroll>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,70 @@
+<ion-view view-title="Brasseries">
+
+	<!-- Content -->
+	<ion-content class="stable-bg">
+		<!-- Univers -->
+      <div class="item item-text-wrap item-degustation font-middle no-padding">
+        <div class="degustation-header">
+          <div class="title">
+            Explorez nos univers
+          </div>
+          <div class="subtitle">
+            Des styles de dégustation, des ambiances
+          </div>
+        </div>
+
+        <div class="list" ng-show="univers.length">
+          <!-- Sroll horizontal -->
+          <ion-scroll direction="x">
+            <div class="horizontal-scroll">
+              <a ng-repeat="element in univers" ng-href="#/tab/univers/{{element.id}}" class="item item-cover-small" style="background-image:url(http://164.132.51.69/houblonde/univers/{{element.background}});">
+                <p>{{element.nom}}</p>
+              </a>
+              <a href="" class="item item-cover-small">
+                <i class="icon ion-ios-arrow-right"></i> Voir tout
+              </a>
+            </div>
+          </ion-scroll>
+        </div>
+        
+        <div ng-hide="selection.length">
+          <!-- Search spinner -->
+          <p class="calm text-center">
+            <ion-spinner icon="ripple"></ion-spinner>
+          </p>
+        </div>
+      </div>
+
+      <!-- Selections -->
+      <div class="item item-text-wrap item-degustation font-middle no-padding stable-bg">
+        <div class="degustation-header">
+          <div class="title">
+            Sélection de dégustations
+          </div>
+          <div class="subtitle">
+            Tout simplement choisies pour vous
+          </div>
+        </div>
+
+
+        <div class="list" ng-show="selection.length">
+          <!-- Sroll horizontal -->
+          <ion-scroll direction="x">
+            <div class="horizontal-scroll">
+              <a ng-repeat="element in selection" ng-href="#/tab/selection/{{element.id}}" class="item item-cover-large" style="background-image:url(http://164.132.51.69/houblonde/selection/{{element.background}})"></a>
+              <a href="" class="item item-cover-large">
+                <i class="icon ion-ios-arrow-right"></i> Voir tout
+              </a>
+            </div>
+          </ion-scroll>
+        </div>
+
+        <div ng-hide="selection.length">
+          <!-- Search spinner -->
+          <p class="calm text-center">
+            <ion-spinner icon="ripple"></ion-spinner>
+          </p>
+        </div>
+      </div>
+	</ion-content>
+</ion-view>
